@@ -1,0 +1,11 @@
+.stats span {
+  display: block;
+}
+
+.hide_stats {
+  display: none;
+}
+
+.show_stats {
+  display: block;
+}

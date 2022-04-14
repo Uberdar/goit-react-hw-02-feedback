@@ -1,0 +1,77 @@
+import React from 'react';
+import x from './FeedbackStyle.module.css';
+
+class Feedback extends React.Component {
+  static defaultProps = {
+    good: 0,
+    neutral: 0,
+    bad: 0,
+  };
+  state = {
+    good: this.props.good,
+    neutral: this.props.neutral,
+    bad: this.props.bad,
+  };
+
+  handleGoodIncrement = () => {
+    this.setState(prevState => {
+      return { good: prevState.good + 1 };
+    });
+  };
+  handleNeutralIncrement = () => {
+    this.setState(prevState => {
+      return { neutral: prevState.neutral + 1 };
+    });
+  };
+  handleBadIncrement = () => {
+    this.setState(prevState => {
+      return { bad: prevState.bad + 1 };
+    });
+  };
+
+  render() {
+    return (
+      <div className="main_div">
+        <h1>Please leave feedback</h1>
+        <div className="buttons_div">
+          <button className="good_btn" onClick={this.handleGoodIncrement}>
+            Good
+          </button>
+          <button className="neutral_btn" onClick={this.handleNeutralIncrement}>
+            Neutral
+          </button>
+          <button className="bad_btn" onClick={this.handleBadIncrement}>
+            Bad
+          </button>
+        </div>
+        <h2>Statistics</h2>
+        {this.props.good === 0 ||
+        this.props.neutral === 0 ||
+        this.props.bad === 0 ? (
+          <h2 className="title">No Stats Yet Given</h2>
+        ) : (
+          ''
+        )}
+
+        <div className={this.props.good === 0 ? x.hide_stats : x.show_stats}>
+          <span className="good_val">Good: {this.state.good}</span>
+          <span className="neutral_val">Neutral: {this.state.neutral}</span>
+          <span className="bad_val">Bad: {this.state.bad}</span>
+          <span className="total_val">
+            Total: {this.state.bad + this.state.neutral + this.state.good}
+          </span>
+          <span className="percents">
+            Persentage:{' '}
+            {Math.round(
+              (this.state.good * 100) /
+                (this.state.bad + this.state.neutral + this.state.good)
+            )}{' '}
+            %
+          </span>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default Feedback;
