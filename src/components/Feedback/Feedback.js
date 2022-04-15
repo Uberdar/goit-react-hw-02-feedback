@@ -1,6 +1,7 @@
 import React from 'react';
-// import x from './FeedbackStyle.module.css';
-
+import x from './FeedbackStyle.module.css';
+//применение модульных стилей к выборке тегов
+//правильное отображение percentage
 class Feedback extends React.Component {
   static defaultProps = {
     good: 0,
@@ -39,6 +40,11 @@ class Feedback extends React.Component {
   };
   showPercentage = () => {
     let x = Math.round((this.state.good * 100) / this.state.counter);
+    // this.setState(prevState => {
+    //   return {
+    //     percentage: x,
+    //   };
+    // });
     return x;
   };
 
@@ -60,7 +66,7 @@ class Feedback extends React.Component {
         <h2>Statistics</h2>
         {this.state.counter > 0 ? (
           <div className="stats_div">
-            <span className="good_val">Good: {this.state.good}</span>
+            <span className={x.good_val}>Good: {this.state.good}</span>
             <span className="neutral_val">Neutral: {this.state.neutral}</span>
             <span className="bad_val">Bad: {this.state.bad}</span>
             <span className="total_val">Total: {this.state.counter}</span>
@@ -70,7 +76,7 @@ class Feedback extends React.Component {
             </span>
           </div>
         ) : (
-          <h2 className="title">No Stats Yet Given</h2>
+          <h2 className="title">No Stats Have Yet Been Given</h2>
         )}
       </div>
     );
