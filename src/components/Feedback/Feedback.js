@@ -1,7 +1,5 @@
 import React from 'react';
 import x from './FeedbackStyle.module.css';
-//применение модульных стилей к выборке тегов
-//правильное отображение percentage
 class Feedback extends React.Component {
   static defaultProps = {
     good: 0,
@@ -18,17 +16,29 @@ class Feedback extends React.Component {
 
   handleGoodIncrement = () => {
     this.setState(prevState => {
-      return { good: prevState.good + 1, counter: prevState.counter + 1 };
+      return {
+        good: prevState.good + 1,
+        counter: prevState.counter + 1,
+        percentage: this.showPercentage(),
+      };
     });
   };
   handleNeutralIncrement = () => {
     this.setState(prevState => {
-      return { neutral: prevState.neutral + 1, counter: prevState.counter + 1 };
+      return {
+        neutral: prevState.neutral + 1,
+        counter: prevState.counter + 1,
+        percentage: this.showPercentage(),
+      };
     });
   };
   handleBadIncrement = () => {
     this.setState(prevState => {
-      return { bad: prevState.bad + 1, counter: prevState.counter + 1 };
+      return {
+        bad: prevState.bad + 1,
+        counter: prevState.counter + 1,
+        percentage: this.showPercentage(),
+      };
     });
   };
   counterChange = () => {
